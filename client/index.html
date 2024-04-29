@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Roulette Table Screen</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+	<div id="app" class="root flex">
+		<div class="table-header flex-row" :style="`background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, ${tableModes[table.mode]?.colour || '#e50040'} 70%);`">
+			<span v-if="isConnected">{{ tableModes[table.mode]?.name || 'Server Error' }}</span>
+			<span v-else>Table Closed</span>
+			<span>{{ tableId }}</span>
+		</div>
+		<div class="table-body flex-row">
+			<div class="table-body-left flex">
+				<div class="table-recents flex">
+					<div v-if="isConnected" v-for="num in sidebarRecents" :class="numbers[num]">{{num}}</div>
+				</div>
+			</div>
+			<div class="table-body-right flex">
+				<div class="table-ads"></div>
+				<div class="table-trends flex-row">
+					<div class="hot-numbers">
+						<span class="title">Hot Numbers</span>
+						<div v-if="isConnected">
+							<div v-for="num in hotNumbers" :class="numbers[num]"><span>{{num}}</span></div>
+						</div>
+					</div>
+					<div class="cool-numbers">
+						<span class="title">Cool Numbers</span>
+						<div v-if="isConnected">
+							<div v-for="num in coolNumbers" :class="numbers[num]"><span>{{num}}</span></div>
+						</div>
+					</div>
+				</div>
+				<div class="table-betting">
+					<span class="title">Roulette '0'</span>
+					<table>
+						<thead>
+							<tr>
+								<th>Bet Type</th>
+								<th>Payout</th>
+								<th>Min Bet</th>
+								<th>Min / Max</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Straight Up</td>
+								<td>35 to 1</td>
+								<td>$5</td>
+								<td>$5 / $500</td>
+							</tr>
+							<tr>
+								<td>Split</td>
+								<td>17 to 1</td>
+								<td>$5</td>
+								<td>$5 / $500</td>
+							</tr>
+							<tr>
+								<td>Street</td>
+								<td>11 to 1</td>
+								<td>$5</td>
+								<td>$5 / $500</td>
+							</tr>
+							<tr>
+								<td>Corner</td>
+								<td>8 to 1</td>
+								<td>$5</td>
+								<td>$5 / $500</td>
+							</tr>
+							<!-- <tr>
+								<td>First Five</td>
+								<td>6 to 1</td>
+								<td>$5</td>
+								<td>$5 / $500</td>
+							</tr> -->
+							<tr>
+								<td>Six Line</td>
+								<td>5 to 1</td>
+								<td>$5</td>
+								<td>$5 / $500</td>
+							</tr>
+							<tr>
+								<td>Dozen</td>
+								<td>2 to 1</td>
+								<td>$5</td>
+								<td>$5 / $500</td>
+							</tr>
+							<tr>
+								<td>Column</td>
+								<td>2 to 1</td>
+								<td>$5</td>
+								<td>$5 / $500</td>
+							</tr>
+							<tr>
+								<td>Even Money</td>
+								<td>1 to 1</td>
+								<td>$5</td>
+								<td>$5 / $500</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="module" src="client.js"></script>
+</body>
+
+</html>

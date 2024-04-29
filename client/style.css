@@ -1,0 +1,229 @@
+@import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Murecho:wght@100..900&display=swap');
+
+html {
+	font-size: 38px;
+	font-family: "Murecho", sans-serif;
+  	font-optical-sizing: auto;
+	font-style: normal;
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	background: black;
+}
+
+.flex {
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center;
+	align-items: center; */
+}
+
+.flex-row {
+	display: flex;
+	/* justify-content: center;
+	align-items: center; */
+}
+
+.root {
+	/* border: 1px solid white; */
+	/* width: 600px; */
+	width: fit-content;
+	height: 100%;
+	/* width: 200px; */
+	background: black;
+	color: white;
+	/* --aspect-ratio: 239/478; */
+	margin: auto;
+}
+
+.table-header {
+	/* background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgb(229 0 64) 70%); */
+	/* width: 100%; */
+	justify-content: space-between;
+	padding: 0.1em 0.3em 0.3em;
+	border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+	/* border-bottom: 2px solid #ccc; */
+}
+
+.table-body {
+	/* height: 100%; */
+	/* border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+	border-left: 1px solid rgba(255, 255, 255, 0.7);
+	border-right: 1px solid rgba(255, 255, 255, 0.7); */
+}
+
+.table-ads {
+	background: white;
+	height: 210px;
+	background-image: url(ad.gif);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.table-recents {
+	border-right: 2px solid rgba(255, 255, 255, 0.7);
+	width: 105px;
+	height: 100%;
+}
+
+.table-recents > div {
+	padding: 0 5px;
+	line-height: 1em;
+	font-size: 1.2em;
+    letter-spacing: 1px;
+}
+
+.table-recents > div.black {
+	text-align: right;
+}
+
+.table-recents > div.red {
+	/* color: #ff85a9; */
+	color: rgb(229 0 64);
+}
+
+.table-recents > div.green {
+	text-align: center;
+	color: #00c900;
+}
+
+.table-body-right {
+	height: 100%;
+	width: 100%;
+}
+
+.table-trends > div {
+	/* width: 50%; */
+	/* width: 250px;
+	height: 250px; */
+	width: 200px;
+    height: 200px;
+	text-align: center;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+	font-size: 1.6em;
+	position: relative;
+}
+
+.table-trends > div > div {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+    /* gap: 0.5em; */
+	gap: 0.2em;
+	margin-top: 0.15em;
+}
+
+.table-trends > div > div > div {
+	background-image: url(ball.png);
+	background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+	height: 64px;
+	width: 64px;
+	position: relative;
+}
+
+.table-trends > div > div > div > span {
+	font-size: 0.7em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+	font-weight: 500;
+}
+
+.table-trends > div > div > div.black {
+	color: black;
+}
+
+.table-trends > div > div > div.red {
+	color: #d10707;
+}
+
+.table-trends > div > div > div.green {
+	color: #007f00;
+}
+
+.hot-numbers,
+.cool-numbers {
+	/* outline: 2px solid white; */
+	border-top: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.hot-numbers {
+	background-image: url(fire.webp);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.cool-numbers {
+	background-image: url(snow.gif);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.hot-numbers:before,
+.cool-numbers:before {
+	display: block;
+	position: absolute;
+	background-image: linear-gradient(to top, rgba(255, 255, 255, 0) 0, #000 100%);
+	content: '';
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	opacity: 0.8;
+	pointer-events: none;
+}
+
+.hot-numbers .title,
+.cool-numbers .title {
+	z-index: 1;
+}
+
+.title {
+	/* font-size: 0.3em; */
+    /* margin-bottom: 0.5em; */
+	font-size: 0.45rem;
+	/* margin-bottom: 0.225rem; */
+	margin-top: 0.15rem;
+    margin-bottom: 0.15rem;
+}
+
+.table-betting {
+	border-top: 2px solid rgba(255, 255, 255, 0.7);
+	display: flex;
+    align-items: center;
+    flex-direction: column;
+	margin-bottom: 20px;
+}
+
+.table-betting table {
+	font-size: 0.4rem;
+}
+
+.table-betting table thead tr th,
+.table-betting table tbody tr td {
+	padding: 0.1em 0.3em;
+	text-align: center;
+}
+
+.table-betting table thead tr th {
+	font-size: 0.8em;
+	color: darkgray;
+}
+
+.table-betting table thead tr th:first-of-type {
+	text-align: right;
+}
+
+.table-betting table tbody tr td:first-of-type {
+	text-align: right;
+}

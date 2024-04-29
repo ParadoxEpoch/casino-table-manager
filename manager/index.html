@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover" />
+	<title>Roulette Table Manager</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <!-- <link rel="mask-icon" href="/assets/img/favicon/safari-pinned-tab.svg" color="#030f1b"> -->
+    <!-- <link rel="shortcut icon" href="/assets/img/favicon/favicon.ico"> -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Casino Manager">
+    <meta name="application-name" content="Casino Manager">
+    <!-- <meta name="theme-color" content="#19191a"> -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="multibtn.css">
+</head>
+
+<body>
+
+	<div id="app">
+
+		<div class="header">
+			<div class="last-spins-container">
+				<span class="last-spins-title">Last Spins: </span><span class="last-spins"><span v-for="num in recents" :class="numbers[num]">{{num}}</span></span>
+			</div>
+		</div>
+
+		<div class="main">
+			<div class="logo">
+				<img src="logo.png" alt="Logo" class="logo-emblem">
+				<img src="logo_text_transparent.png" alt="Logo Text" class="logo-text">
+			</div>
+			<div class="table-container">
+				<img src="table.png" alt="Roulette Table" class="table" usemap="#tablemap">
+			</div>
+			
+			<map name="tablemap">
+				<area @click="sendSpin(0)" shape="rect" coords="1,1, 68,230">
+				
+				<!-- any standard number is 58x76px -->
+				<area @click="sendSpin(3)" shape="rect" coords="70,1, 128,76">
+				<area @click="sendSpin(6)" shape="rect" coords="130,1, 188,76">
+				<area @click="sendSpin(9)" shape="rect" coords="190,1, 248,76">
+				<area @click="sendSpin(12)" shape="rect" coords="250,1, 308,76">
+				<area @click="sendSpin(15)" shape="rect" coords="310,1, 368,76">
+				<area @click="sendSpin(18)" shape="rect" coords="369,1, 426,76">
+				<area @click="sendSpin(21)" shape="rect" coords="429,1, 487,76">
+				<area @click="sendSpin(24)" shape="rect" coords="489,1, 547,76">
+				<area @click="sendSpin(27)" shape="rect" coords="549,1, 606,76">
+				<area @click="sendSpin(30)" shape="rect" coords="608,1, 666,76">
+				<area @click="sendSpin(33)" shape="rect" coords="668,1, 726,76">
+				<area @click="sendSpin(36)" shape="rect" coords="728,1, 786,76">
+	
+				<area @click="sendSpin(2)" shape="rect" coords="70,78, 128,153">
+				<area @click="sendSpin(5)" shape="rect" coords="130,78, 188,153">
+				<area @click="sendSpin(8)" shape="rect" coords="190,78, 248,153">
+				<area @click="sendSpin(11)" shape="rect" coords="250,78, 308,153">
+				<area @click="sendSpin(14)" shape="rect" coords="310,78, 368,153">
+				<area @click="sendSpin(17)" shape="rect" coords="369,78, 426,153">
+				<area @click="sendSpin(20)" shape="rect" coords="429,78, 487,153">
+				<area @click="sendSpin(23)" shape="rect" coords="489,78, 547,153">
+				<area @click="sendSpin(26)" shape="rect" coords="549,78, 606,153">
+				<area @click="sendSpin(29)" shape="rect" coords="608,78, 666,153">
+				<area @click="sendSpin(32)" shape="rect" coords="668,78, 726,153">
+				<area @click="sendSpin(35)" shape="rect" coords="728,78, 786,153">
+	
+				<area @click="sendSpin(1)" shape="rect" coords="70,155, 128,230">
+				<area @click="sendSpin(4)" shape="rect" coords="130,155, 188,230">
+				<area @click="sendSpin(7)" shape="rect" coords="190,155, 248,230">
+				<area @click="sendSpin(10)" shape="rect" coords="250,155, 308,230">
+				<area @click="sendSpin(13)" shape="rect" coords="310,155, 368,230">
+				<area @click="sendSpin(16)" shape="rect" coords="369,155, 426,230">
+				<area @click="sendSpin(19)" shape="rect" coords="429,155, 487,230">
+				<area @click="sendSpin(22)" shape="rect" coords="489,155, 547,230">
+				<area @click="sendSpin(25)" shape="rect" coords="549,155, 606,230">
+				<area @click="sendSpin(28)" shape="rect" coords="608,155, 666,230">
+				<area @click="sendSpin(31)" shape="rect" coords="668,155, 726,230">
+				<area @click="sendSpin(34)" shape="rect" coords="728,155, 786,230">
+			</map>
+
+			<div class="controls">
+				<button @click="undoSpin()">Undo Last Spin</button>
+				<div class="multi-btn">
+					<label>
+						<input v-model="table.mode" type="radio" name="radio" value="twoDollar" />
+						<span class="checkmark">$2.50</span>
+					</label>
+					<label>
+						<input v-model="table.mode" type="radio" name="radio" value="fiveDollar" />
+						<span class="checkmark">$5</span>
+					</label>
+					<label>
+						<input v-model="table.mode" type="radio" name="radio" value="tenDollar" />
+						<span class="checkmark">$10</span>
+					</label>
+					<label>
+						<input v-model="table.mode" type="radio" name="radio" value="twentyFiveDollar" />
+						<span class="checkmark">$25</span>
+					</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer">
+			<div v-if="isConnected" class="connection-state connected">Connected to Coordinator Server</div>
+			<div v-else class="connection-state disconnected">Coordinator Server Offline</div>
+		</div>
+
+	</div>
+
+	<script type="module" src="manager.js"></script>
+</body>
+
+</html>

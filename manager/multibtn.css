@@ -1,0 +1,44 @@
+.multi-btn {
+	display: flex;
+	width: fit-content;
+	box-shadow: #00000042 4px 10px 15px 1px;
+}
+
+.multi-btn > label {
+	display: block;
+	position: relative;
+	cursor: pointer;
+	user-select: none;
+	margin: 0.6em 0;
+}
+
+.multi-btn > label:first-of-type .checkmark {
+	border-radius: 5px 0 0 5px;
+}
+
+.multi-btn > label:last-of-type .checkmark {
+	border-radius: 0 5px 5px 0;
+}
+
+.multi-btn > label input {
+	display: none;
+}
+
+.multi-btn > label input:checked ~ .checkmark {
+	background: radial-gradient(circle at 3% 7.4%, #0090f3 0%, #0056f0 90%);
+	color: white;
+}
+
+.multi-btn > label input:checked ~ .checkmark:after {
+	display: block;
+}
+
+.multi-btn > label .checkmark {
+	padding: 0.6em 1.5em;
+	background-color: #1f2937;
+}
+
+.multi-btn > label:hover input:not(:checked) ~ .checkmark {
+	background-color: #374151;
+	color: white;
+}

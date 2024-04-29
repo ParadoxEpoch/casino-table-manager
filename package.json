@@ -1,0 +1,26 @@
+{
+  "name": "casino-table-manager",
+  "version": "1.0.0",
+  "description": "A fun table manager for at-home casino games.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+	"build": "pkg package.json --output casinomgr"
+  },
+  "author": "Tristan Gauci (ParadoxEpoch)",
+  "license": "ISC",
+  "bin": "./server.js",
+  "dependencies": {
+    "express": "^5.0.0-beta.2",
+    "out-url": "^1.2.2",
+    "serverline": "^1.6.0",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
+  },
+  "pkg": {
+    "assets": [ "client/**/*", "manager/**/*" ],
+    "targets": [ "node18-win-x64", "node18-mac-x64", "node18-linux-x64" ]
+  }
+}
