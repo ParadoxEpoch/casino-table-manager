@@ -2,6 +2,7 @@
 import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
 //import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js';
 import { io } from "https://cdn.socket.io/4.7.5/socket.io.esm.min.js";
+import { startRotation, moveToNumber } from "../shared/spin.js";
 
 createApp({
 	data() {
@@ -11,7 +12,8 @@ createApp({
 
 			table: {
 				history: [],
-				mode: ''
+				mode: '',
+				digitalWheel: true
 			},
 
 			tableModes: {
@@ -114,7 +116,7 @@ createApp({
 			this.socket.on('connect', () => {
 				console.log('Connected to server');
 				this.isConnected = true;
-				//this.refreshTable();
+				this.syncWheelState();
 			});
 			this.socket.on('disconnect', () => {
 				console.log('Disconnected from server');
@@ -123,6 +125,10 @@ createApp({
 			this.socket.on('table.update', (data) => {
 				console.log('Received table update from server:', data);
 				this.table = data;
+				this.syncWheelState();
+			});
+			this.socket.on('table.startWheelSpin', async (data) => {
+				await startRotation(data.speed);
 			});
 		},
 		refreshTable() {
@@ -136,7 +142,13 @@ createApp({
 			this.socket.emit('table.stats', (data) => {
 				console.log('Received table mode from server:', data);
 				this.table = data;
+				this.syncWheelState();
 			});
+		},
+		syncWheelState() {
+			// If there's any history, move to the most recent number
+			const lastNumber = this.table.history[this.table.history.length - 1];
+			if (lastNumber) moveToNumber(lastNumber);
 		}
 	},
 	mounted() {

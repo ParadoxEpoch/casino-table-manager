@@ -4,7 +4,7 @@
 html {
 	font-size: 38px;
 	font-family: "Murecho", sans-serif;
-  	font-optical-sizing: auto;
+	font-optical-sizing: auto;
 	font-style: normal;
 	height: 100%;
 }
@@ -70,23 +70,23 @@ body {
 	height: 100%;
 }
 
-.table-recents > div {
+.table-recents>div {
 	padding: 0 5px;
 	line-height: 1em;
 	font-size: 1.2em;
-    letter-spacing: 1px;
+	letter-spacing: 1px;
 }
 
-.table-recents > div.black {
+.table-recents>div.black {
 	text-align: right;
 }
 
-.table-recents > div.red {
+.table-recents>div.red {
 	/* color: #ff85a9; */
 	color: rgb(229 0 64);
 }
 
-.table-recents > div.green {
+.table-recents>div.green {
 	text-align: center;
 	color: #00c900;
 }
@@ -96,56 +96,56 @@ body {
 	width: 100%;
 }
 
-.table-trends > div {
+.table-trends>div {
 	/* width: 50%; */
 	/* width: 250px;
 	height: 250px; */
 	width: 200px;
-    height: 200px;
+	height: 200px;
 	text-align: center;
 	display: flex;
-    flex-direction: column;
-    align-items: center;
+	flex-direction: column;
+	align-items: center;
 	font-size: 1.6em;
 	position: relative;
 }
 
-.table-trends > div > div {
+.table-trends>div>div {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-    /* gap: 0.5em; */
+	/* gap: 0.5em; */
 	gap: 0.2em;
 	margin-top: 0.15em;
 }
 
-.table-trends > div > div > div {
+.table-trends>div>div>div {
 	background-image: url(ball.png);
 	background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+	background-repeat: no-repeat;
+	background-position: center;
 	height: 64px;
 	width: 64px;
 	position: relative;
 }
 
-.table-trends > div > div > div > span {
+.table-trends>div>div>div>span {
 	font-size: 0.7em;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -55%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -55%);
 	font-weight: 500;
 }
 
-.table-trends > div > div > div.black {
+.table-trends>div>div>div.black {
 	color: black;
 }
 
-.table-trends > div > div > div.red {
+.table-trends>div>div>div.red {
 	color: #d10707;
 }
 
-.table-trends > div > div > div.green {
+.table-trends>div>div>div.green {
 	color: #007f00;
 }
 
@@ -190,18 +190,18 @@ body {
 
 .title {
 	/* font-size: 0.3em; */
-    /* margin-bottom: 0.5em; */
+	/* margin-bottom: 0.5em; */
 	font-size: 0.45rem;
 	/* margin-bottom: 0.225rem; */
 	margin-top: 0.15rem;
-    margin-bottom: 0.15rem;
+	margin-bottom: 0.15rem;
 }
 
 .table-betting {
 	border-top: 2px solid rgba(255, 255, 255, 0.7);
 	display: flex;
-    align-items: center;
-    flex-direction: column;
+	align-items: center;
+	flex-direction: column;
 	margin-bottom: 20px;
 }
 
@@ -226,4 +226,102 @@ body {
 
 .table-betting table tbody tr td:first-of-type {
 	text-align: right;
+}
+
+/* Roulette Wheel */
+.table-wheel {
+	height: 210px;
+	background-image: url(../shared/felt.png), -webkit-radial-gradient(50% 40%, circle farthest-corner, #527c14, #243a0a);
+	background-size: 180px 180px, auto;
+	background-attachment: fixed;
+	overflow: hidden;
+}
+
+.roulette-wheel {
+	float: right;
+	width: 380px;
+	height: 380px;
+	border-radius: 100%;
+	background: url(../shared/roulette_1.jpg);
+	background-size: 380px 380px;
+	shape-outside: circle(190px);
+	margin: 0 0 1em 1em;
+	box-shadow: 2px 10px 30px rgba(0, 0, 0, .4);
+	position: relative;
+	touch-action: none;
+	overflow: visible;
+}
+
+@media screen and (max-width: 2640px) {
+	.roulette-wheel {
+		float: none;
+		margin: 1em auto
+	}
+}
+
+@media screen and (max-width: 375px) {
+	.roulette-wheel {
+		float: none;
+		left: 30px;
+	}
+}
+
+.roulette-wheel .layer-2,
+.roulette-wheel .layer-3,
+.roulette-wheel .layer-4,
+.roulette-wheel .layer-5,
+.ball-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-size: 380px 380px
+}
+
+.roulette-wheel .layer-2,
+.roulette-wheel .layer-4,
+.ball-container {
+	will-change: transform
+}
+
+.roulette-wheel .layer-2 {
+	background-image: url(../shared/roulette_2.png)
+}
+
+.roulette-wheel .layer-3 {
+	background-image: url(../shared/roulette_3.png)
+}
+
+.roulette-wheel .layer-4 {
+	background-image: url(../shared/roulette_4.png);
+}
+
+.roulette-wheel .layer-5 {
+	background-image: url(../shared/roulette_5.png);
+}
+
+.roulette-wheel svg {
+	position: absolute;
+	top: 0;
+	left: 0
+}
+
+.roulette-wheel circle {
+	cursor: pointer;
+	fill: transparent;
+}
+
+.roulette-wheel .ball {
+	position: absolute;
+	width: 14px;
+	height: 14px;
+	border-radius: 7px;
+	background: #fff radial-gradient(circle at 5px 5px, #fff, #444);
+	box-shadow: 1px 1px 4px #000;
+	transform: translateY(-116px);
+	top: 50%;
+	left: 50%;
+	margin: -7px;
+	will-change: transform
 }

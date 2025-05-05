@@ -1,6 +1,6 @@
 {
   "name": "casino-table-manager",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A fun table manager for at-home casino games.",
   "main": "server.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "pkg": "^5.8.1"
   },
   "pkg": {
-    "assets": [ "client/**/*", "manager/**/*" ],
+    "assets": [ "client/**/*", "manager/**/*", "shared/**/*" ],
     "targets": [ "node18-win-x64", "node18-mac-x64", "node18-linux-x64" ]
   }
 }

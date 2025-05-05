@@ -3,20 +3,21 @@
 
 <head>
 	<meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover" />
 	<title>Roulette Table Manager</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
-    <!-- <link rel="mask-icon" href="/assets/img/favicon/safari-pinned-tab.svg" color="#030f1b"> -->
-    <!-- <link rel="shortcut icon" href="/assets/img/favicon/favicon.ico"> -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="Casino Manager">
-    <meta name="application-name" content="Casino Manager">
-    <!-- <meta name="theme-color" content="#19191a"> -->
+	<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+	<link rel="manifest" href="favicon/site.webmanifest">
+	<!-- <link rel="mask-icon" href="/assets/img/favicon/safari-pinned-tab.svg" color="#030f1b"> -->
+	<!-- <link rel="shortcut icon" href="/assets/img/favicon/favicon.ico"> -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-title" content="Casino Manager">
+	<meta name="application-name" content="Casino Manager">
+	<!-- <meta name="theme-color" content="#19191a"> -->
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="multibtn.css">
 </head>
@@ -27,7 +28,8 @@
 
 		<div class="header">
 			<div class="last-spins-container">
-				<span class="last-spins-title">Last Spins: </span><span class="last-spins"><span v-for="num in recents" :class="numbers[num]">{{num}}</span></span>
+				<span class="last-spins-title">Last Spins: </span><span class="last-spins"><span v-for="num in recents"
+						:class="numbers[num]">{{num}}</span></span>
 			</div>
 		</div>
 
@@ -36,13 +38,14 @@
 				<img src="logo.png" alt="Logo" class="logo-emblem">
 				<img src="logo_text_transparent.png" alt="Logo Text" class="logo-text">
 			</div>
-			<div class="table-container">
+
+			<div v-show="!table.digitalWheel" class="table-container">
 				<img src="table.png" alt="Roulette Table" class="table" usemap="#tablemap">
 			</div>
-			
-			<map name="tablemap">
+
+			<map v-show="!table.digitalWheel" name="tablemap">
 				<area @click="sendSpin(0)" shape="rect" coords="1,1, 68,230">
-				
+
 				<!-- any standard number is 58x76px -->
 				<area @click="sendSpin(3)" shape="rect" coords="70,1, 128,76">
 				<area @click="sendSpin(6)" shape="rect" coords="130,1, 188,76">
@@ -56,7 +59,7 @@
 				<area @click="sendSpin(30)" shape="rect" coords="608,1, 666,76">
 				<area @click="sendSpin(33)" shape="rect" coords="668,1, 726,76">
 				<area @click="sendSpin(36)" shape="rect" coords="728,1, 786,76">
-	
+
 				<area @click="sendSpin(2)" shape="rect" coords="70,78, 128,153">
 				<area @click="sendSpin(5)" shape="rect" coords="130,78, 188,153">
 				<area @click="sendSpin(8)" shape="rect" coords="190,78, 248,153">
@@ -69,7 +72,7 @@
 				<area @click="sendSpin(29)" shape="rect" coords="608,78, 666,153">
 				<area @click="sendSpin(32)" shape="rect" coords="668,78, 726,153">
 				<area @click="sendSpin(35)" shape="rect" coords="728,78, 786,153">
-	
+
 				<area @click="sendSpin(1)" shape="rect" coords="70,155, 128,230">
 				<area @click="sendSpin(4)" shape="rect" coords="130,155, 188,230">
 				<area @click="sendSpin(7)" shape="rect" coords="190,155, 248,230">
@@ -84,8 +87,22 @@
 				<area @click="sendSpin(34)" shape="rect" coords="728,155, 786,230">
 			</map>
 
+			<div v-show="table.digitalWheel" class="roulette-wheel">
+				<div class="layer-2 wheel" style="transform: rotate(0deg);"></div>
+				<div class="layer-3"></div>
+				<div class="layer-4 wheel" style="transform: rotate(0deg);"></div>
+				<div class="layer-5"></div>
+				<div class="ball-container" style="transform: rotate(0deg);">
+					<div class="ball" style="transform: translate(0, -163.221px);"></div>
+				</div>
+				<svg width="380" height="380">
+					<circle cx="190" cy="190" r="190" style="touch-action: none;"></circle>
+				</svg>
+			</div>
+
 			<div class="controls">
 				<button @click="undoSpin()">Undo Last Spin</button>
+				<button @click="toggleWheelMode()">Toggle Digital Wheel</button>
 				<div class="multi-btn">
 					<label>
 						<input v-model="table.mode" type="radio" name="radio" value="twoDollar" />

@@ -13,7 +13,8 @@ async function init(socketPort) {
 
 	const table = {
 		history: ['29', '32', '0', '20', '23', '32', '26', '3', '17', '12', '15', '28', '27', '3'],
-		mode: 'fiveDollar'
+		mode: 'fiveDollar',
+		digitalWheel: true // set to true for a digital wheel
 	};
 
 	manager.on('connection', (socket) => {
@@ -40,6 +41,14 @@ async function init(socketPort) {
 		socket.on('table.setMode', (mode) => {
 			table.mode = mode;
 			syncTable();
+		});
+		socket.on('table.setDigitalWheel', (digitalWheel) => {
+			table.digitalWheel = digitalWheel;
+			syncTable();
+		});
+		socket.on('table.requestWheelSpin', (data) => {
+			client.emit('table.startWheelSpin', data);
+			manager.emit('table.startWheelSpin', data);
 		});
 
 		// On table.stats, send table data to manager

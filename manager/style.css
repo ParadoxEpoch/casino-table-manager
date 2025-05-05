@@ -4,31 +4,31 @@
 html {
 	font-size: 16px;
 	font-family: "Murecho", sans-serif;
-  	font-optical-sizing: auto;
+	font-optical-sizing: auto;
 	font-style: normal;
 	height: 100%;
 }
 
 body {
 	height: 100%;
-	/* background-image: url('table_background.jpg');
-	background-size: cover; */
 
-	/* position: relative; */
-    /* width: 100%;
-    height: 100%; */
-    /* overflow: auto; */
-	background-color: #0e0e0f;
+	/* background-color: #0e0e0f;
     background-image: url(background-gradient.svg);
     background-size: auto;
     background-position: 50% 0;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
 
 	user-select: none;
 	-webkit-user-select: none;
 	-webkit-touch-callout: none;
 
 	color: white;
+
+	background-image: url(../shared/felt.png), -webkit-radial-gradient(50% 40%, circle farthest-corner, #527c14, #243a0a);
+	background-size: 180px 180px, auto;
+	background-attachment: fixed;
+	touch-action: pan-y;
+	-webkit-tap-highlight-color: transparent;
 }
 
 #app {
@@ -88,9 +88,9 @@ body {
 
 .logo {
 	display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
 }
 
 .logo img {
@@ -139,7 +139,7 @@ body {
 .footer .connection-state.connected {
 	/* color: #00ff00; */
 	color: #1fb70e;
-    /* opacity: .5; */
+	/* opacity: .5; */
 }
 
 .footer .connection-state.disconnected {
@@ -159,7 +159,7 @@ button {
 	text-align: center;
 }
 
-button > i {
+button>i {
 	margin-right: 5px;
 }
 
@@ -203,4 +203,98 @@ button.is-danger {
 	color: #fff;
 	background-color: #ff3860;
 	background: radial-gradient(circle at 3% 7.4%, rgb(202 27 62) 0%, rgb(164 18 18) 90%);
+}
+
+/* Roulette Wheel */
+.roulette-wheel {
+	float: right;
+	width: 380px;
+	height: 380px;
+	border-radius: 100%;
+	background: url(../shared/roulette_1.jpg);
+	background-size: 380px 380px;
+	shape-outside: circle(190px);
+	margin: 0 0 1em 1em;
+	box-shadow: 2px 10px 30px rgba(0, 0, 0, .4);
+	position: relative;
+	touch-action: none;
+	overflow: visible;
+}
+
+@media screen and (max-width: 2640px) {
+	.roulette-wheel {
+		float: none;
+		margin: 1em auto
+	}
+}
+
+@media screen and (max-width: 375px) {
+	.roulette-wheel {
+		float: none;
+		left: 30px;
+	}
+}
+
+.roulette-wheel .layer-2,
+.roulette-wheel .layer-3,
+.roulette-wheel .layer-4,
+.roulette-wheel .layer-5,
+.ball-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-size: 380px 380px
+}
+
+.ball-container {
+	pointer-events: none;
+}
+
+.roulette-wheel .layer-2,
+.roulette-wheel .layer-4,
+.ball-container {
+	will-change: transform
+}
+
+.roulette-wheel .layer-2 {
+	background-image: url(../shared/roulette_2.png)
+}
+
+.roulette-wheel .layer-3 {
+	background-image: url(../shared/roulette_3.png)
+}
+
+.roulette-wheel .layer-4 {
+	background-image: url(../shared/roulette_4.png);
+}
+
+.roulette-wheel .layer-5 {
+	background-image: url(../shared/roulette_5.png);
+}
+
+.roulette-wheel svg {
+	position: absolute;
+	top: 0;
+	left: 0
+}
+
+.roulette-wheel circle {
+	cursor: pointer;
+	fill: transparent;
+}
+
+.roulette-wheel .ball {
+	position: absolute;
+	width: 14px;
+	height: 14px;
+	border-radius: 7px;
+	background: #fff radial-gradient(circle at 5px 5px, #fff, #444);
+	box-shadow: 1px 1px 4px #000;
+	transform: translateY(-116px);
+	top: 50%;
+	left: 50%;
+	margin: -7px;
+	will-change: transform
 }

@@ -49,6 +49,7 @@ for (const name of Object.keys(nets)) {
 // Server static client files
 app.use('/client', express.static(__dirname + '/client'));
 app.use('/manager', express.static(__dirname + '/manager'));
+app.use('/shared', express.static(__dirname + '/shared'));
 
 // Root route
 app.get('/', (req, res) => {
